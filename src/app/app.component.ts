@@ -8,7 +8,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 @Component({
   templateUrl: 'app.html'
 })
-export class MyApp {
+export class AlumniAssocApp {
   rootPage = TabsPage;
 
   constructor(platform: Platform) {

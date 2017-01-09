@@ -1,30 +1,55 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { MyApp } from './app.component';
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
+import { AlumniAssocApp } from './app.component';
+
+// Pages
+import { MessagesPage } from '../pages/messages/messages';
+import { SettingPage } from '../pages/setting/setting';
 import { HomePage } from '../pages/home/home';
+import { OrganizationsPage } from '../pages/organizations/organizations';
+import { FriendsPage } from '../pages/friends/friends';
+import { ClubsPage } from '../pages/clubs/clubs';
+import { PracticeBasePage } from '../pages/practice-base/practice-base';
+import { DonatePage } from '../pages/donate/donate';
+
 import { TabsPage } from '../pages/tabs/tabs';
+
+// Providers
+import { ApiService } from '../providers/api-service';
+import { BannerService } from '../providers/banner-service';
 
 @NgModule({
   declarations: [
-    MyApp,
-    AboutPage,
-    ContactPage,
+    AlumniAssocApp,
+    MessagesPage,
+    SettingPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    OrganizationsPage,
+    FriendsPage,
+    ClubsPage,
+    PracticeBasePage,
+    DonatePage,   
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(AlumniAssocApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    AboutPage,
-    ContactPage,
+    AlumniAssocApp,
+    MessagesPage,
+    SettingPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    OrganizationsPage,
+    FriendsPage,
+    ClubsPage,
+    PracticeBasePage,
+    DonatePage, 
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiService,
+    BannerService,
+  ]
 })
 export class AppModule {}
