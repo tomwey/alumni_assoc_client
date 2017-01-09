@@ -28,6 +28,7 @@ export class OrganizationDetailPage {
   loadOrganization(id) {
     this.organService.loadOrganDetail(id).then(data => {
       this.organization = data;
+      console.log(data);
     });
   }
 

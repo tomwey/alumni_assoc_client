@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { OrganizationsPage } from '../pages/organizations/organizations';
 import { FriendsPage } from '../pages/friends/friends';
 import { ClubsPage } from '../pages/clubs/clubs';
+import { ClubDetailPage } from '../pages/club-detail/club-detail';
 import { PracticeBasePage } from '../pages/practice-base/practice-base';
 import { DonatePage } from '../pages/donate/donate';
 import { OrganizationAssocPage } from '../pages/organization-assoc/organization-assoc';
@@ -43,6 +44,7 @@ import { PracticeBaseService } from '../providers/practice-base-service';
     OrganizationDetailPage,
     EventListPage,
     EventDetailPage,
+    ClubDetailPage,
   ],
   imports: [
     IonicModule.forRoot(AlumniAssocApp)
@@ -63,6 +65,7 @@ import { PracticeBaseService } from '../providers/practice-base-service';
     OrganizationDetailPage,
     EventListPage,
     EventDetailPage,
+    ClubDetailPage,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,

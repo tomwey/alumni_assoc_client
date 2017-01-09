@@ -37,4 +37,35 @@
     </ion-item>
     </ion-list>
   </ion-card>
+
+  <!-- 最新活动 -->
+  <ion-card *ngIf="organization && organization.latest_events.length > 0">
+    <ion-card-header>
+      最新活动
+    </ion-card-header>
+    <ion-list>
+      <button ion-item *ngFor="let event of organization.latest_events" text-wrap (click)="gotoEventDetail(event);">
+        <ion-thumbnail item-left>
+          <img [src]="event.image">
+        </ion-thumbnail>
+        <h2>{{event.title}}</h2>
+        <p>活动时间：{{event.started_at}}</p>
+      </button>
+    </ion-list>
+    <ion-card-footer (click)="gotoEventList();">
+      查看全部活动
+    </ion-card-footer>
+  </ion-card>
+
+  <!-- 最近加入成员 -->
+  <ion-card>
+    <ion-card-header>
+      最近加入成员
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+      <div [innerHtml]="organization?.body"></div>
+    </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

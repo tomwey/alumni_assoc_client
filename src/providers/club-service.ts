@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { ApiService } from './api-service';
 
 /*
   Generated class for the ClubService provider.
@@ -11,8 +12,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ClubService {
 
-  constructor(public http: Http) {
-    console.log('Hello ClubService Provider');
+  constructor(public http: Http, private api: ApiService) {
+    // console.log('Hello ClubService Provider');
+  }
+
+  loadClubs() {
+    return this.api.get('clubs', null);
   }
 
 }

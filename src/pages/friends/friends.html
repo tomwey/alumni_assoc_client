@@ -7,12 +7,24 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>friends</ion-title>
+    <ion-title>同学录</ion-title>
+    <ion-buttons end>
+      <button ion-button block color="primary" disabled>搜索</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-avatar item-left>
+        <img [src]="user.avatar" />
+      </ion-avatar>
+      <h2>{{user.nickname}}</h2>
+      <p>{{user.specialty}}&nbsp;&nbsp;{{user.graduation}}</p>
+      <button ion-button outline color="primary" item-right>私信</button>
+    </ion-item>
+  </ion-list>
 </ion-content>

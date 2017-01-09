@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { FormControl } from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
 
 /*
   Generated class for the Friends page.
@@ -13,7 +15,12 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class FriendsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  searchTerm: string = '';
+  searchControl: FormControl;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.searchControl = new FormControl();
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad FriendsPage');

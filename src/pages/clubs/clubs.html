@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>clubs</ion-title>
+    <ion-title>校友俱乐部</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let item of clubs" text-wrap (click)="gotoClubDetail(item);">
+      <ion-thumbnail item-left>
+        <img [src]="item.image">
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <p>{{item.intro}}</p>
+      <p>成员：{{item.users_count}}</p>
+    </button>
+  </ion-list>
 </ion-content>
