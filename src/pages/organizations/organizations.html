@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>organizations</ion-title>
+    <ion-title>校友组织</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngIf="!!organizationAssoc" text-wrap (click)="gotoOrganAssoc();">
+      <ion-thumbnail item-left>
+        <img [src]="organizationAssoc.image">
+      </ion-thumbnail>
+      <h2>校友总会</h2>
+      <p>{{organizationAssoc.intro}}</p>
+      <p>成员：{{organizationAssoc.users_count}}</p>
+    </button>
+    <button ion-item *ngFor="let item of organizations" text-wrap (click)="gotoOrganDetail(item);">
+      <ion-thumbnail item-left>
+        <img [src]="item.image">
+      </ion-thumbnail>
+      <h2>{{item.name}}</h2>
+      <p>{{item.intro}}</p>
+      <p>成员：{{item.users_count}}</p>
+    </button>
+  </ion-list>
 </ion-content>

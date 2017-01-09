@@ -1,0 +1,61 @@
+<!--
+  Generated template for the OrganizationAssoc page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>校友总会</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <ion-slides *ngIf="!!organAssocInfo" [options]="imagesSlideOptions" style="max-height: 200px;">
+    <ion-slide *ngFor="let image of organAssocInfo.images">
+      <img [src]="image" />
+    </ion-slide>
+  </ion-slides>
+  <ion-list>
+    <ion-item text-wrap>
+      <h2>{{organAssocInfo?.name}}</h2>
+      <p>创建时间：{{organAssocInfo?.founded_on}}</p>
+      <p>成员：{{organAssocInfo?.users_count}}</p>
+    </ion-item>
+  </ion-list>
+  <!-- 简介 -->
+  <ion-card>
+    <ion-card-header>
+      简介
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+      <div [innerHtml]="organAssocInfo?.body"></div>
+    </ion-item>
+    </ion-list>
+  </ion-card>
+
+  <!-- 最新活动 -->
+  <ion-card *ngIf="organAssocInfo && organAssocInfo.latest_events">
+    <ion-card-header>
+      最新活动
+    </ion-card-header>
+    <ion-list>
+      <button ion-item *ngFor="let event of organAssocInfo.latest_events" text-wrap click="gotoEventDetail(event);">
+        <ion-thumbnail item-left>
+          <img [src]="event.image">
+        </ion-thumbnail>
+        <h2>{{event.title}}</h2>
+        <p>活动时间：{{event.started_at}}</p>
+      </button>
+    </ion-list>
+
+    <ion-card-header (click)="moreEvents();">
+      更多活动
+    </ion-card-header>
+
+  </ion-card>
+
+</ion-content>

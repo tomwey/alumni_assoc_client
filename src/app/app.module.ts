@@ -11,12 +11,21 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ClubsPage } from '../pages/clubs/clubs';
 import { PracticeBasePage } from '../pages/practice-base/practice-base';
 import { DonatePage } from '../pages/donate/donate';
+import { OrganizationAssocPage } from '../pages/organization-assoc/organization-assoc';
+import { OrganizationDetailPage } from '../pages/organization-detail/organization-detail';
+import { EventListPage } from '../pages/event-list/event-list';
+import { EventDetailPage } from '../pages/event-detail/event-detail';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
 // Providers
 import { ApiService } from '../providers/api-service';
 import { BannerService } from '../providers/banner-service';
+import { OrganizationService } from '../providers/organization-service';
+import { ClubService } from '../providers/club-service';
+import { DonateService } from '../providers/donate-service';
+import { FriendService } from '../providers/friend-service';
+import { PracticeBaseService } from '../providers/practice-base-service';
 
 @NgModule({
   declarations: [
@@ -30,6 +39,10 @@ import { BannerService } from '../providers/banner-service';
     ClubsPage,
     PracticeBasePage,
     DonatePage,   
+    OrganizationAssocPage,
+    OrganizationDetailPage,
+    EventListPage,
+    EventDetailPage,
   ],
   imports: [
     IonicModule.forRoot(AlumniAssocApp)
@@ -46,10 +59,20 @@ import { BannerService } from '../providers/banner-service';
     ClubsPage,
     PracticeBasePage,
     DonatePage, 
+    OrganizationAssocPage,
+    OrganizationDetailPage,
+    EventListPage,
+    EventDetailPage,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,
     BannerService,
+    OrganizationService,
+    OrganizationService,
+    ClubService,
+    DonateService,
+    FriendService,
+    PracticeBaseService,
   ]
 })
 export class AppModule {}
