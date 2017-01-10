@@ -7,12 +7,20 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>event-list</ion-title>
+    <ion-title>活动列表</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let event of events" text-wrap (click)="gotoEventDetail(event)">
+      <ion-thumbnail item-left>
+        <img [src]="event.image" />
+      </ion-thumbnail>
+      <h2>{{event.title}}</h2>
+      <p>{{event.started_at}} 开始</p>
+      <p>{{event.ended_at}} 结束</p>
+    </button>
+  </ion-list>
 </ion-content>

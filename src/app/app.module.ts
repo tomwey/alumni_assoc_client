@@ -33,6 +33,7 @@ import { DonateService } from '../providers/donate-service';
 import { UserService } from '../providers/user-service';
 import { PracticeBaseService } from '../providers/practice-base-service';
 import { StorageService } from '../providers/storage-service';
+import { EventService } from '../providers/event-service';
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { StorageService } from '../providers/storage-service';
     PracticeBaseService,
     StorageService,
     Storage,
+    EventService,
   ]
 })
 export class AppModule {}

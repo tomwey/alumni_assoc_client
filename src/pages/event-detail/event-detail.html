@@ -7,12 +7,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>event-detail</ion-title>
+    <ion-title>活动详情</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-content>
+    <ion-card>
+    <img [src]="event?.image" />
+    <ion-card-content>
+      <ion-card-title>{{event?.title}}</ion-card-title>
+      <p>{{event?.started_at}} 开始</p>
+      <p>{{event?.ended_at}} 结束</p>
+    </ion-card-content>
+    <ion-list>
+      <ion-item text-wrap>
+        <ion-avatar item-left>
+          <img [src]="event?.owner.image" />
+        </ion-avatar>
+        <h2>{{event?.owner.name}}</h2>
+        <p>{{event?.owner.intro}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
 
-<ion-content padding>
-
+    <!-- 简介 -->
+  <ion-card>
+    <ion-card-header>
+      简介
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+      <div [innerHtml]="event?.body" text-wrap></div>
+    </ion-item>
+    </ion-list>
+  </ion-card>
 </ion-content>

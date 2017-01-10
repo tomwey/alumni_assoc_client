@@ -25,6 +25,9 @@ export class FriendsPage {
 
   isOpenChat: boolean = false;
 
+  ownerType: string = null;
+  ownerId: number = null;
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private userService: UserService,
@@ -33,6 +36,9 @@ export class FriendsPage {
               private modalCtrl: ModalController) 
   {
     this.searchControl = new FormControl();
+
+    this.ownerType = navParams.get('ownerType');
+    this.ownerId   = navParams.get('ownerId');
 
     this.loadUsers();
   }
@@ -54,7 +60,7 @@ export class FriendsPage {
       loading = this.showLoading();
     }
 
-    this.userService.loadUsers(this.searchTerm, null, null, null, null).then(data => {
+    this.userService.loadUsers(this.searchTerm, this.ownerType, this.ownerId, null, null).then(data => {
       this.searching = false;
 
       this.users = data;

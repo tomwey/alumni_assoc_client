@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { EventService } from '../../providers/event-service';
 
 /*
   Generated class for the EventDetail page.
@@ -13,10 +14,43 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class EventDetailPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  event: any = null;
+  
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private loadingCtrl: LoadingController, 
+              private toastCtrl: ToastController,
+              private eventService: EventService) 
+  {
+    this.loadEvent(navParams.get('event').id);
+  }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad EventDetailPage');
+  loadEvent(eventId) {
+    let loading = this.showLoading();
+    this.eventService.loadEvent(eventId).then(data => {
+      loading.dismiss();
+      console.log(data);
+
+      this.event = data;
+    })
+  }
+
+  showLoading() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+    });
+
+    loading.present();
+    return loading;
+  }
+
+  showToast(msg: string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
+    return toast;
   }
 
 }

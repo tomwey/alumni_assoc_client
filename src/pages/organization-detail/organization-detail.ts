@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { OrganizationService } from '../../providers/organization-service';
 import { UserService } from '../../providers/user-service';
+import { FriendsPage } from '../friends/friends';
+import { LoginPage } from '../login/login';
+import { FriendDetailPage } from '../friend-detail/friend-detail';
+import { EventListPage } from '../event-list/event-list';
+import { EventDetailPage } from '../event-detail/event-detail';
 
 /*
   Generated class for the OrganizationDetail page.
@@ -22,7 +27,8 @@ export class OrganizationDetailPage {
               private organService: OrganizationService,
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
-              private userService: UserService) 
+              private userService: UserService,
+              private modalCtrl: ModalController) 
   {
     this.loadOrganization(this.navParams.get('item').id);
   }
@@ -35,15 +41,23 @@ export class OrganizationDetailPage {
   }
 
   doAdd() {
-    if (this.userService.currentUser) {
-      // 加入校友会
+    if (this.userService.currentUser && this.userService.currentUser.token) {
+      // 加入
     } else {
-      // 跳转到登录页面
+      // 登录
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.present();
     }
   }
 
   gotoUserDetail(user) {
-
+    if (this.userService.currentUser && this.userService.currentUser.token) {
+      this.navCtrl.push(FriendDetailPage, {uid: user.uid, token: this.userService.currentUser.token});
+    } else {
+      // 登录
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.present();
+    }
   }
 
   openChat(user) {
@@ -51,15 +65,15 @@ export class OrganizationDetailPage {
   }
 
   gotoEventList() {
-
+    this.navCtrl.push(EventListPage, { ownerType: 'Organization', ownerId: this.organization.id });
   }
 
   gotoEventDetail(event) {
-
+    this.navCtrl.push(EventDetailPage, {event});
   }
 
   gotoUserList() {
-
+    this.navCtrl.push(FriendsPage, { ownerType: 'Organization', ownerId: this.organization.id });
   }
 
 }
