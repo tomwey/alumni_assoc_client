@@ -21,6 +21,7 @@ export class FriendsPage {
   searchTerm: string = '';
   searchControl: FormControl;
   users: Array<any>;
+  searching: boolean = false;
 
   isOpenChat: boolean = false;
 
@@ -36,13 +37,30 @@ export class FriendsPage {
     this.loadUsers();
   }
 
-  loadUsers() {
-    let loading = this.showLoading();
+  ionViewDidLoad() {
+    this.searchControl.valueChanges.debounceTime(200).subscribe(search => {
+      // this.searching = false;
+      this.loadUsers();
+    });
+  }
 
-    this.userService.loadUsers(null, null, null, null, null).then(data => {
+  onSearchInput() {
+    this.searching = true;
+  }
+
+  loadUsers() {
+    let loading;
+    if (!this.searching) {
+      loading = this.showLoading();
+    }
+
+    this.userService.loadUsers(this.searchTerm, null, null, null, null).then(data => {
+      this.searching = false;
+
       this.users = data;
       // console.log(data);
-      loading.dismiss();
+      if (loading)
+        loading.dismiss();
     });
   }
 

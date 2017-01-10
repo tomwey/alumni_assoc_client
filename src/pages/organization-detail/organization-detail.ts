@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
 import { OrganizationService } from '../../providers/organization-service';
+import { UserService } from '../../providers/user-service';
 
 /*
   Generated class for the OrganizationDetail page.
@@ -20,7 +21,8 @@ export class OrganizationDetailPage {
               public navParams: NavParams,
               private organService: OrganizationService,
               private loadingCtrl: LoadingController,
-              private toastCtrl: ToastController) 
+              private toastCtrl: ToastController,
+              private userService: UserService) 
   {
     this.loadOrganization(this.navParams.get('item').id);
   }
@@ -30,6 +32,34 @@ export class OrganizationDetailPage {
       this.organization = data;
       console.log(data);
     });
+  }
+
+  doAdd() {
+    if (this.userService.currentUser) {
+      // 加入校友会
+    } else {
+      // 跳转到登录页面
+    }
+  }
+
+  gotoUserDetail(user) {
+
+  }
+
+  openChat(user) {
+
+  }
+
+  gotoEventList() {
+
+  }
+
+  gotoEventDetail(event) {
+
+  }
+
+  gotoUserList() {
+
   }
 
 }

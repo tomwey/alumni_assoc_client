@@ -8,15 +8,15 @@
 
   <ion-navbar>
     <ion-title>同学录</ion-title>
-    <ion-buttons end>
-      <button ion-button block color="primary" disabled>搜索</button>
-    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl" (ionInput)="onSearchInput();" placeholder="输入昵称或专业"></ion-searchbar>
+  <div *ngIf="searching" class="spinner-container">
+    <ion-spinner></ion-spinner>
+  </div>
   <ion-list>
     <button ion-item *ngFor="let user of users" (click)="gotoFriendDetail(user);">
       <ion-avatar item-left>

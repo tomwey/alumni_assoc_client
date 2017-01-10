@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>{{organization?.name}}</ion-title>
     <ion-buttons end>
-      <button ion-button block color="danger">加入</button>
+      <button ion-button block color="danger" (click)="doAdd();">加入</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -63,13 +63,13 @@
       最近加入成员
     </ion-card-header>
     <ion-list>
-      <button ion-item *ngFor="let user of organization.latest_users">
+      <button ion-item *ngFor="let user of organization.latest_users" (click)="gotoUserDetail(user);">
         <ion-avatar item-left>
           <img src="{{user.avatar || 'assets/img/default_avatar.png'}}" />
         </ion-avatar>
         <h2>{{user.nickname || user.hack_mobile}}</h2>
         <p>{{user.specialty}}&nbsp;&nbsp;{{user.graduation}}</p>
-        <button ion-button outline color="primary" item-right>私信</button>
+        <button ion-button outline color="primary" item-right (click)="openChat(user)">私信</button>
       </button>
     </ion-list>
     <button *ngIf="organization.latest_users.length > 5" ion-item (click)="gotoUserList();">
