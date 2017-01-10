@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{club.name}}</ion-title>
+    <ion-title>{{club?.name}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,8 +17,8 @@
     <img [src]="club?.image" />
     <ion-card-content>
       <ion-card-title>{{club?.name}}</ion-card-title>
-      <p>创建时间：{{organization?.founded_on}}</p>
-      <p>成员：{{organization?.users_count}}</p>
+      <p>创建时间：{{club?.founded_on}}</p>
+      <p>成员：{{club?.users_count}}</p>
     </ion-card-content>
   </ion-card>
 
@@ -29,8 +29,55 @@
     </ion-card-header>
     <ion-list>
       <ion-item>
-      <div [innerHtml]="organization?.body"></div>
+      <div [innerHtml]="club?.body"></div>
     </ion-item>
     </ion-list>
   </ion-card>
+
+  <!-- 俱乐部章程 -->
+  <ion-card>
+    <button ion-item>
+      俱乐部章程
+    </button>
+  </ion-card>
+
+  <!-- 最新活动 -->
+  <ion-card *ngIf="club && club.latest_events.length > 0">
+    <ion-card-header>
+      最新活动
+    </ion-card-header>
+    <ion-list>
+      <button ion-item *ngFor="let event of club.latest_events" text-wrap (click)="gotoEventDetail(event);">
+        <ion-thumbnail item-left>
+          <img [src]="event.image">
+        </ion-thumbnail>
+        <h2>{{event.title}}</h2>
+        <p>活动时间：{{event.started_at}}</p>
+      </button>
+    </ion-list>
+    <button *ngIf="club.latest_events.length > 5" ion-item (click)="gotoEventList();">
+      查看全部活动
+    </button>
+  </ion-card>
+
+  <!-- 最近加入成员 -->
+  <ion-card *ngIf="club && club.latest_users.length > 0">
+    <ion-card-header>
+      最近加入成员
+    </ion-card-header>
+    <ion-list>
+      <button ion-item *ngFor="let user of club.latest_users">
+        <ion-avatar item-left>
+          <img src="{{user.avatar || 'assets/img/default_avatar.png'}}" />
+        </ion-avatar>
+        <h2>{{user.nickname || user.hack_mobile}}</h2>
+        <p>{{user.specialty}}&nbsp;&nbsp;{{user.graduation}}</p>
+        <button ion-button outline color="primary" item-right>私信</button>
+      </button>
+    </ion-list>
+    <button *ngIf="club.latest_users.length > 5" ion-item (click)="gotoUserList();">
+      查看所有成员
+    </button>
+  </ion-card>
+
 </ion-content>

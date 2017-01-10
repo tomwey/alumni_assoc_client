@@ -52,9 +52,9 @@
       </button>
     </ion-list>
 
-    <ion-card-header (click)="moreEvents();">
-      更多活动
-    </ion-card-header>
+    <button *ngIf="organAssocInfo.latest_events.length > 5" ion-item (click)="gotoEventList();">
+      查看全部活动
+    </button>
 
   </ion-card>
 

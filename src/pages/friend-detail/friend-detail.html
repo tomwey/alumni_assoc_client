@@ -1,0 +1,46 @@
+<!--
+  Generated template for the FriendDetail page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{user.nickname || user.hack_mobile}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      基本信息
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <ion-avatar item-left>
+          <img src="{{user.avatar || 'assets/img/default_avatar.png'}}" />
+        </ion-avatar>
+        <h2>{{user.nickname || user.hack_mobile}}</h2>
+        <p>{{user.specialty}}&nbsp;{{user.graduation}}</p>
+        <button ion-button color="primary" outline item-right>私信</button>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      详细信息
+    </ion-card-header>
+    <ion-list>
+      <ion-item>
+        <p>姓名：{{user.realname}}</p>
+        <p>手机：{{user.mobile}}</p>
+        <p>院系：{{user.faculty}}</p>
+        <p>专业：{{user.specialty}}</p>
+        <p>班级：{{user.graduation}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-card>
+</ion-content>

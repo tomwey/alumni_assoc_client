@@ -20,4 +20,8 @@ export class ClubService {
     return this.api.get('clubs', null);
   }
 
+  loadClub(clubId) {
+    return this.api.get('clubs/' + clubId, null);
+  }
+
 }

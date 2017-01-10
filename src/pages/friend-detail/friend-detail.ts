@@ -1,40 +1,38 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
-import { ClubService } from '../../providers/club-service';
+import { UserService } from '../../providers/user-service';
 /*
-  Generated class for the ClubDetail page.
+  Generated class for the FriendDetail page.
 
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
 @Component({
-  selector: 'page-club-detail',
-  templateUrl: 'club-detail.html'
+  selector: 'page-friend-detail',
+  templateUrl: 'friend-detail.html'
 })
-export class ClubDetailPage {
-
-  club: any;
+export class FriendDetailPage {
+  user: any = {};
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private loadingCtrl: LoadingController,
               private toastCtrl: ToastController,
-              private clubService: ClubService
-              ) 
+              private userService: UserService) 
   {
-    this.loadClub(navParams.get('item').id);
+    this.loadUserInfo();
   }
 
-  loadClub(clubId) {
+  loadUserInfo() {
     let loading = this.showLoading();
 
-    this.clubService.loadClub(clubId).then(data => {
+    this.userService.loadUserInfo(this.navParams.get('uid'), this.navParams.get('token')).then(data => {
+      this.user = data;
+      console.log(data);
       loading.dismiss();
-
-      this.club = data;
     });
   }
 
-  showLoading() {
+    showLoading() {
     let loading = this.loadingCtrl.create({
       spinner: 'ios',
     });

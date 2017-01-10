@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, ModalController } from 'ionic-angular';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
+import { UserService } from '../../providers/user-service';
+import { FriendDetailPage } from '../friend-detail/friend-detail';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the Friends page.
@@ -17,13 +20,76 @@ export class FriendsPage {
 
   searchTerm: string = '';
   searchControl: FormControl;
+  users: Array<any>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  isOpenChat: boolean = false;
+
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private userService: UserService,
+              private loadingCtrl: LoadingController,
+              private toastCtrl: ToastController,
+              private modalCtrl: ModalController) 
+  {
     this.searchControl = new FormControl();
+
+    this.loadUsers();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FriendsPage');
+  loadUsers() {
+    let loading = this.showLoading();
+
+    this.userService.loadUsers(null, null, null, null, null).then(data => {
+      this.users = data;
+      // console.log(data);
+      loading.dismiss();
+    });
   }
 
+  gotoFriendDetail(user) {
+    // console.log(2);
+    if (this.isOpenChat) return;
+
+    if (this.userService.currentUser && this.userService.currentUser.token) {
+      this.navCtrl.push(FriendDetailPage, {uid: user.uid, token: this.userService.currentUser.token});
+    } else {
+      // 登录
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.present();
+    }
+  }
+
+  openChat(user) {
+    // console.log(1);
+    this.isOpenChat = true;
+
+    if (this.userService.currentUser && this.userService.currentUser.token) {
+      // this.navCtrl.push(FriendDetailPage, {uid: user.uid, token: this.userService.currentUser.token});
+    } else {
+      // 登录
+      let modal = this.modalCtrl.create(LoginPage);
+      modal.onDidDismiss(data => {
+        this.isOpenChat = false;
+      });
+      modal.present();
+    }
+  }
+
+  showLoading() {
+    let loading = this.loadingCtrl.create({
+      spinner: 'ios',
+    });
+
+    loading.present();
+    return loading;
+  }
+
+  showToast(msg: string) {
+    let toast = this.toastCtrl.create({
+      message: msg,
+      duration: 2000,
+    });
+    toast.present();
+    return toast;
+  }
 }

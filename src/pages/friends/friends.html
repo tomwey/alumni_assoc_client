@@ -18,13 +18,13 @@
 <ion-content>
   <ion-searchbar [(ngModel)]="searchTerm" [formControl]="searchControl"></ion-searchbar>
   <ion-list>
-    <ion-item *ngFor="let user of users">
+    <button ion-item *ngFor="let user of users" (click)="gotoFriendDetail(user);">
       <ion-avatar item-left>
-        <img [src]="user.avatar" />
+        <img src="{{user.avatar || 'assets/img/default_avatar.png'}}" />
       </ion-avatar>
-      <h2>{{user.nickname}}</h2>
+      <h2>{{user.nickname || user.hack_mobile}}</h2>
       <p>{{user.specialty}}&nbsp;&nbsp;{{user.graduation}}</p>
-      <button ion-button outline color="primary" item-right>私信</button>
-    </ion-item>
+      <button ion-button outline color="primary" item-right (click)="openChat(user)">私信</button>
+    </button>
   </ion-list>
 </ion-content>
