@@ -19,7 +19,7 @@ export class StorageService {
   }
 
   removeObject(key: string) {
-    this.storage.remove(key);
+    return this.storage.remove(key);
   }
   
   getObject(key: string): Promise<any> {

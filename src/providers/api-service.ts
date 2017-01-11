@@ -16,8 +16,8 @@ export class ApiService {
 
   }
 
-  // 处理POST请求
-  get(uri, params) {
+  // 处理GET请求
+  get(uri: string, params: any) {
     let url = API_HOST + '/' + uri;
 
     let i = new Date().getTime();
@@ -40,7 +40,7 @@ export class ApiService {
   }
 
   // 处理POST请求
-  post(uri, params) {
+  post(uri: string, params: any) {
     let url = API_HOST + '/' + uri;
 
     let i = new Date().getTime();
@@ -68,10 +68,15 @@ export class ApiService {
 
   private handleSuccess(res: Response) {
     let body = res.json();
-    if (body.code == 0) {
-      return body.data || {};
+    
+    if (body.data) {
+      if (body.code == 0) {
+        return body.data || {};
+      } else {
+        return Promise.reject(body.message);
+      }
     } else {
-      return Promise.reject(body.message);
+      return body;
     }
   }
 

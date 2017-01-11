@@ -13,6 +13,18 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item *ngFor="let message of messages" text-wrap>
+      <ion-avatar item-left>
+        <img src="{{message.user.avatar || 'assets/img/default_avatar.png'}}" >
+      </ion-avatar>
+      <h2>{{message.user.nickname || message.user.hack_mobile}}</h2>
+      <p>{{message.latest_message.content}}</p>
+      <div item-right style="text-align: center;">
+        <p>1分钟前</p>
+        <ion-badge color="danger">5</ion-badge>
+      </div>
+    </button>
+  </ion-list>
 </ion-content>

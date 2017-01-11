@@ -45,9 +45,9 @@ export class LoginPage {
     this.userService.login(this.user).then(data => {
       loading.dismiss();
       console.log(data);
-      setTimeout(function() {
+      // setTimeout(function() {
         this.close();
-      }, 50);
+      // }, 50);
     }, error => {
       loading.dismiss();
 

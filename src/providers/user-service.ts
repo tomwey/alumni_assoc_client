@@ -21,6 +21,16 @@ export class UserService {
       this.currentUser = null;
     });
   }
+  
+  getCurrentUser() {
+    return this.storage.getObject('logined.user').then(data => {
+      this.currentUser = JSON.parse(data);
+      return Promise.resolve(this.currentUser);
+    }, error => {
+      this.currentUser = null;
+      return Promise.reject(error);
+    });
+  }
 
   loadUsers(keyword: string, 
             ownerType: string, 
@@ -65,7 +75,7 @@ export class UserService {
 
   logout() {
     this.currentUser = null;
-    this.storage.removeObject('logined.user');
+    return this.storage.removeObject('logined.user');
   }
 
   signup() {

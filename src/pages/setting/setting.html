@@ -15,7 +15,7 @@
 
 <ion-content style="background-color: rgb(242,242,241)">
   <ion-list>
-    <button ion-item>
+    <button ion-item (click)="gotoUserProfile();">
       <ion-avatar item-left>
         <img src="{{user?.avatar || 'assets/img/default_avatar.png'}}" />
       </ion-avatar>

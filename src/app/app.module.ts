@@ -19,6 +19,7 @@ import { EventDetailPage } from '../pages/event-detail/event-detail';
 import { FriendDetailPage } from '../pages/friend-detail/friend-detail';
 
 import { LoginPage } from '../pages/login/login';
+import { UserProfilePage } from '../pages/user-profile/user-profile';
 
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -34,6 +35,7 @@ import { UserService } from '../providers/user-service';
 import { PracticeBaseService } from '../providers/practice-base-service';
 import { StorageService } from '../providers/storage-service';
 import { EventService } from '../providers/event-service';
+import { MessageService } from '../providers/message-service';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,7 @@ import { EventService } from '../providers/event-service';
     ClubDetailPage,
     FriendDetailPage,
     LoginPage,
+    UserProfilePage,
   ],
   imports: [
     IonicModule.forRoot(AlumniAssocApp)
@@ -77,6 +80,7 @@ import { EventService } from '../providers/event-service';
     ClubDetailPage,
     FriendDetailPage,
     LoginPage,
+    UserProfilePage,
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,
@@ -90,6 +94,7 @@ import { EventService } from '../providers/event-service';
     StorageService,
     Storage,
     EventService,
+    MessageService,
   ]
 })
 export class AppModule {}

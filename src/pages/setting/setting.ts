@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ModalController } from 'ionic-angular';
 import { UserService } from '../../providers/user-service';
+import { UserProfilePage } from '../user-profile/user-profile';
+import { LoginPage } from '../login/login';
 
 /*
   Generated class for the Setting page.
@@ -17,13 +19,32 @@ export class SettingPage {
   user: any = null;
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private userService: UserService) 
+              private userService: UserService,
+              private modalCtrl: ModalController) 
   {
+    
   }
 
   ionViewWillEnter() {
-    this.user = this.userService.currentUser;
+    this.userService.getCurrentUser().then(data => {
+      this.user = data;
+    });
   }
 
+  gotoUserProfile() {
+    this.userService.getCurrentUser().then(data => {
+      if (this.userService.currentUser) {
+        this.navCtrl.push(UserProfilePage);
+      } else {
+        let modal = this.modalCtrl.create(LoginPage);
+        modal.onDidDismiss(data => {
+          this.userService.getCurrentUser().then(data => {
+            this.user = data;
+          });
+        });
+        modal.present();
+      }
+    })
+  }
 
 }
