@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { UserService } from '../../providers/user-service';
 
 /*
   Generated class for the Setting page.
@@ -13,10 +14,16 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class SettingPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SettingPage');
+  user: any = null;
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams,
+              private userService: UserService) 
+  {
   }
+
+  ionViewWillEnter() {
+    this.user = this.userService.currentUser;
+  }
+
 
 }

@@ -13,6 +13,31 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content style="background-color: rgb(242,242,241)">
+  <ion-list>
+    <button ion-item>
+      <ion-avatar item-left>
+        <img src="{{user?.avatar || 'assets/img/default_avatar.png'}}" />
+      </ion-avatar>
+      <h2>{{user?.nickname || user?.hack_mobile || '立即登录'}}</h2>
+    </button>
+  </ion-list>
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="ios-browsers-outline" item-left></ion-icon>加入的校友会</button>
+    <button ion-item>
+      <ion-icon name="ios-color-filter-outline" item-left></ion-icon>
+      加入的俱乐部</button>
+    <button ion-item>
+      <ion-icon name="ios-calendar-outline" item-left></ion-icon>
+      参加的活动</button>
+  </ion-list>
+  <ion-list>
+    <button ion-item>
+      <ion-icon name="ios-create-outline" item-left></ion-icon>
+      意见反馈</button>
+    <button ion-item>
+      <ion-icon name="ios-information-circle-outline" item-left></ion-icon>
+      关于</button>
+  </ion-list>
 </ion-content>
