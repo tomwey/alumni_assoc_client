@@ -14,7 +14,7 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngIf="!!organizationAssoc" text-wrap (click)="gotoOrganAssoc();">
+    <button ion-item *ngIf="!!organizationAssoc" text-wrap (tap)="gotoOrganAssoc();">
       <ion-thumbnail item-left>
         <img [src]="organizationAssoc.image">
       </ion-thumbnail>
@@ -22,7 +22,7 @@
       <p>{{organizationAssoc.intro}}</p>
       <p>成员：{{organizationAssoc.users_count}}</p>
     </button>
-    <button ion-item *ngFor="let item of organizations" text-wrap (click)="gotoOrganDetail(item);">
+    <button ion-item *ngFor="let item of organizations" text-wrap (tap)="gotoOrganDetail(item);">
       <ion-thumbnail item-left>
         <img [src]="item.image">
       </ion-thumbnail>

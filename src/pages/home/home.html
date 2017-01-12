@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row wrap>
       <ion-col *ngFor="let item of sections" width-50>
-        <img [src]="item.icon" (click)="forwardTo(item);">
+        <img [src]="item.icon" (tap)="forwardTo(item);">
       </ion-col>
     </ion-row>
   </ion-grid>

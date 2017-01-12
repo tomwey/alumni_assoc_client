@@ -21,7 +21,19 @@ export class OrganizationsPage {
               private toastCtrl: ToastController) {
       
       
-      this.organService.loadOrganizationAssocInfo().then(data => {
+      // this.organService.loadOrganizationAssocInfo().then(data => {
+      //   // console.log(data);
+      //   this.organizationAssoc = data;
+      // }, error => {
+      //   // console.log(error);
+      // });
+
+      // this.loadOrganizations();
+      
+  }
+
+  ionViewDidLoad() {
+    this.organService.loadOrganizationAssocInfo().then(data => {
         // console.log(data);
         this.organizationAssoc = data;
       }, error => {
@@ -29,7 +41,6 @@ export class OrganizationsPage {
       });
 
       this.loadOrganizations();
-      
   }
 
   loadOrganizations() {

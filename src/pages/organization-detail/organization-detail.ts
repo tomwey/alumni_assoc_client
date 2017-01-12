@@ -30,6 +30,16 @@ export class OrganizationDetailPage {
               private userService: UserService,
               private modalCtrl: ModalController) 
   {
+    // this.loadOrganization(this.navParams.get('item').id);
+  }
+
+  ionViewDidLoad() {
+    // setTimeout(function() {
+      // this.loadOrganization(this.navParams.get('item').id);
+    // }, 0);
+  }
+
+  ionViewWillEnter() {
     this.loadOrganization(this.navParams.get('item').id);
   }
 
